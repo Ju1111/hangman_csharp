@@ -17,9 +17,7 @@ namespace Hangman
 
     internal class Hangman
     {
-
-        private string hello = "Today I will let you guess programming languages. Ready to go? Then pelease guess your first letter and press enter.";
-
+        private string hello;
         private string input;
 
         private List<string> words = new List<string>();
@@ -52,15 +50,19 @@ namespace Hangman
 
         internal void Game()
         {
+            if (guesses.Count == 0)
+            {
+                hello = "Today I will let you guess programming languages. Ready to go? Then pelease guess your first letter and press enter.";
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine(hello);
+            }
+
             Random r = new Random();
             index = r.Next(words.Count);
             word = words[index];
 
             Console.WriteLine(word);
 
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine(hello);
-            
             Console.ForegroundColor = ConsoleColor.Cyan;
             input = Console.ReadLine();
 
