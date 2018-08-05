@@ -20,11 +20,13 @@ namespace Hangman
 
         private string hello = "Today I will let you guess programming languages. Ready to go? Then pelease guess your first letter and press enter.";
 
-        private string input = Console.ReadLine();
+        private string input;
 
         private List<string> words = new List<string>();
         private int index;
         private string word;
+
+        internal List<string> guesses = new List<string>();
 
         internal Hangman()
         {
@@ -43,6 +45,11 @@ namespace Hangman
             words.Add("python");
         }
 
+        internal void addToList(string userInput)
+        {
+            guesses.Add(userInput);
+        }
+
         internal void Game()
         {
             Random r = new Random();
@@ -55,25 +62,13 @@ namespace Hangman
             Console.WriteLine(hello);
             
             Console.ForegroundColor = ConsoleColor.Cyan;
-            var playerInput1 = new Guess();
+            input = Console.ReadLine();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Player wrote: " + playerInput1.input);
-            playerInput1.addToList(playerInput1.input);
-            Console.WriteLine(playerInput1.guesses.Count);
+            Console.WriteLine("Player wrote: " + input);
+            addToList(input);
+            Console.WriteLine(guesses.Count);
 
-        }
-    }
-
-    internal class Guess
-    {
-        internal string input = Console.ReadLine();
-
-        internal List<string> guesses = new List<string>();
-
-        internal void addToList(string input)
-        {
-            guesses.Add(input);
         }
     }
 }
