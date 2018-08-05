@@ -64,7 +64,7 @@ namespace Hangman
             Console.WriteLine(word);
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            input = Console.ReadLine();
+            input = Console.ReadLine().ToLower();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Player wrote: " + input);
