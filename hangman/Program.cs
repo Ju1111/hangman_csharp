@@ -17,50 +17,16 @@ namespace Hangman
 
     internal class Hangman
     {
-        internal void Game()
-        {
-            var newWord = new RandomWord();
-            Console.WriteLine(newWord.word);
-            
-            var greeting = new Greeting();
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine(greeting.hello);
-            
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            var playerInput1 = new Guess();
-            
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Player wrote: " + playerInput1.input);
-            playerInput1.addToList(playerInput1.input);
-            Console.WriteLine(playerInput1.guesses.Count);
 
-        }
-    }
+        private string hello = "Today I will let you guess programming languages. Ready to go? Then pelease guess your first letter and press enter.";
 
-    internal class Greeting
-    {
-        internal string hello = "Today I will let you guess programming languages. Ready to go? Then pelease guess your first letter and press enter.";
-    }
+        private string input = Console.ReadLine();
 
-    internal class Guess
-    {
-        internal string input = Console.ReadLine();
+        private List<string> words = new List<string>();
+        private int index;
+        private string word;
 
-        internal List<string> guesses = new List<string>();
-
-        internal void addToList(string input)
-        {
-            guesses.Add(input);
-        }
-    }
-
-    internal class RandomWord
-    {
-        internal List<string> words = new List<string>();
-        internal int index;
-        internal string word;
-
-        internal RandomWord()
+        internal Hangman()
         {
             words.Add("c#");
             words.Add("java");
@@ -75,10 +41,39 @@ namespace Hangman
             words.Add("c++");
             words.Add("go");
             words.Add("python");
+        }
 
+        internal void Game()
+        {
             Random r = new Random();
             index = r.Next(words.Count);
             word = words[index];
+
+            Console.WriteLine(word);
+
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine(hello);
+            
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            var playerInput1 = new Guess();
+
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("Player wrote: " + playerInput1.input);
+            playerInput1.addToList(playerInput1.input);
+            Console.WriteLine(playerInput1.guesses.Count);
+
+        }
+    }
+
+    internal class Guess
+    {
+        internal string input = Console.ReadLine();
+
+        internal List<string> guesses = new List<string>();
+
+        internal void addToList(string input)
+        {
+            guesses.Add(input);
         }
     }
 }
